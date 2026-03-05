@@ -432,6 +432,12 @@ const Index = () => {
               <a href="tel:+74232448010" className="block text-[#1E3A5F] font-semibold py-2">
                 +7 (423) 244-80-10
               </a>
+              <Button
+                className="w-full bg-[#2d6a4f] text-white"
+                onClick={() => { setCallbackOpen(true); setMobileMenuOpen(false); }}
+              >
+                Заказать звонок
+              </Button>
               <Button className="w-full bg-[#E67E22] hover:bg-[#d35400] text-white" onClick={() => scrollTo('callback')}>
                 Получить расчёт
               </Button>
