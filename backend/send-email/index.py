@@ -22,13 +22,14 @@ def handler(event: dict, context) -> dict:
     body = json.loads(event.get('body') or '{}')
     name = body.get('name', '').strip()
     phone = body.get('phone', '').strip()
+    email = body.get('email', '').strip()
     message = body.get('message', '').strip()
 
     if not name or not phone:
         return {
             'statusCode': 400,
             'headers': cors_headers,
-            'body': json.dumps({'error': 'Имя и телефон обязательны'}),
+            'body': json.dumps({'error': 'Имя и телефон обязательны'}, ensure_ascii=False),
         }
 
     now = datetime.now().strftime('%d.%m.%Y %H:%M')
@@ -48,6 +49,7 @@ def handler(event: dict, context) -> dict:
 
 Имя: {name}
 Телефон: {phone}
+Email: {email if email else 'не указан'}
 Сообщение: {message if message else 'не указано'}
 Дата и время: {now}
 Источник: {source}
@@ -60,9 +62,10 @@ def handler(event: dict, context) -> dict:
   <table style="border-collapse: collapse; width: 100%; max-width: 500px;">
     <tr><td style="padding: 8px; font-weight: bold; color: #666;">Имя:</td><td style="padding: 8px;">{name}</td></tr>
     <tr style="background:#f9f9f9;"><td style="padding: 8px; font-weight: bold; color: #666;">Телефон:</td><td style="padding: 8px;"><a href="tel:{phone}">{phone}</a></td></tr>
-    <tr><td style="padding: 8px; font-weight: bold; color: #666;">Сообщение:</td><td style="padding: 8px;">{message if message else 'не указано'}</td></tr>
-    <tr style="background:#f9f9f9;"><td style="padding: 8px; font-weight: bold; color: #666;">Дата и время:</td><td style="padding: 8px;">{now}</td></tr>
-    <tr><td style="padding: 8px; font-weight: bold; color: #666;">Источник:</td><td style="padding: 8px; color: #E67E22;">{source}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold; color: #666;">Email:</td><td style="padding: 8px;"><a href="mailto:{email}">{email if email else 'не указан'}</a></td></tr>
+    <tr style="background:#f9f9f9;"><td style="padding: 8px; font-weight: bold; color: #666;">Сообщение:</td><td style="padding: 8px;">{message if message else 'не указано'}</td></tr>
+    <tr><td style="padding: 8px; font-weight: bold; color: #666;">Дата и время:</td><td style="padding: 8px;">{now}</td></tr>
+    <tr style="background:#f9f9f9;"><td style="padding: 8px; font-weight: bold; color: #666;">Источник:</td><td style="padding: 8px; color: #4CAF50;">{source}</td></tr>
   </table>
 </body>
 </html>

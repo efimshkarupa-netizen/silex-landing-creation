@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import func2url from '../../backend/func2url.json';
+import CallbackModal from '@/components/CallbackModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -227,6 +228,7 @@ function LeaveReviewForm({ onSubmitted }: { onSubmitted?: () => void }) {
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [headerScrolled, setHeaderScrolled] = useState(false);
+  const [callbackOpen, setCallbackOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [bannerFlipped, setBannerFlipped] = useState(false);
@@ -353,6 +355,7 @@ const Index = () => {
   ];
 
   return (
+    <>
     <div ref={containerRef} className="min-h-screen bg-[#F8F8F8]">
       {/* HEADER */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md' : 'bg-transparent'}`}>
@@ -379,13 +382,16 @@ const Index = () => {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
-              href="tel:+74232448010"
-              className={`hidden md:flex items-center gap-1.5 text-sm font-semibold transition-colors ${headerScrolled ? 'text-[#1E3A5F]' : 'text-white'}`}
+            <button
+              onClick={() => setCallbackOpen(true)}
+              className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border-2 border-[#4CAF50] text-[#4CAF50] bg-left bg-no-repeat btn-fill-hover transition-all duration-500 hover:text-white"
+              style={{ backgroundImage: 'linear-gradient(#4CAF50, #4CAF50)', backgroundSize: '0% 100%', backgroundRepeat: 'no-repeat' }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundSize = '100% 100%'; (e.currentTarget as HTMLButtonElement).style.color = 'white'; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundSize = '0% 100%'; (e.currentTarget as HTMLButtonElement).style.color = '#4CAF50'; }}
             >
-              <Icon name="Phone" size={16} />
-              +7 (423) 244-80-10
-            </a>
+              <Icon name="PhoneCall" size={15} />
+              Заказать звонок
+            </button>
             <Button
               size="sm"
               className="bg-[#E67E22] hover:bg-[#d35400] text-white font-semibold hidden md:flex relative overflow-hidden ripple-btn"
@@ -1032,6 +1038,9 @@ const Index = () => {
         </div>
       </footer>
     </div>
+
+    <CallbackModal isOpen={callbackOpen} onClose={() => setCallbackOpen(false)} />
+    </>
   );
 };
 

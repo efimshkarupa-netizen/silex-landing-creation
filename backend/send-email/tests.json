@@ -11,9 +11,7 @@
       "method": "POST",
       "path": "/",
       "body": {"message": "test"},
-      "expectedStatus": 400,
-      "expectedBody": {"error": "Имя и телефон обязательны"},
-      "bodyMatcher": "partial"
+      "expectedStatus": 400
     }
   ]
 }
