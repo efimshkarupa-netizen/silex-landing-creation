@@ -100,6 +100,8 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
       });
       setSuccess(true);
       launchConfetti();
+       
+      if (typeof (window as unknown as Record<string, unknown>).ym !== 'undefined') (window as unknown as Record<string, (...args: unknown[]) => void>).ym(107229043, 'reachGoal', 'submit_callback_form');
     } finally {
       setLoading(false);
     }

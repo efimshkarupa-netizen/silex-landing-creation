@@ -383,7 +383,7 @@ const Index = () => {
 
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setCallbackOpen(true)}
+              onClick={() => { setCallbackOpen(true); if (typeof ym !== 'undefined') ym(107229043, 'reachGoal', 'click_order_call'); }}
               className="hidden md:flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold border-2 border-[#4CAF50] text-[#4CAF50] bg-left bg-no-repeat btn-fill-hover transition-all duration-500 hover:text-white"
               style={{ backgroundImage: 'linear-gradient(#4CAF50, #4CAF50)', backgroundSize: '0% 100%', backgroundRepeat: 'no-repeat' }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.backgroundSize = '100% 100%'; (e.currentTarget as HTMLButtonElement).style.color = 'white'; }}
