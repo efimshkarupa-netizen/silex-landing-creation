@@ -404,6 +404,7 @@ const Index = () => {
                 btn.appendChild(circle);
                 setTimeout(() => circle.remove(), 600);
                 scrollTo('callback');
+                if (typeof ym !== 'undefined') ym(107229043, 'reachGoal', 'click_get_calculation');
               }}
             >
               Получить расчёт
@@ -815,6 +816,7 @@ const Index = () => {
                         if (res.ok) {
                           setFormStatus('success');
                           setFormData({ name: '', phone: '', message: '' });
+                          if (typeof ym !== 'undefined') ym(107229043, 'reachGoal', 'submit_calculation_form');
                         } else {
                           setFormStatus('error');
                         }
