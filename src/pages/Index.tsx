@@ -115,12 +115,18 @@ function FlipCard({ frontImage, frontTitle, backTitle, backDescription, backImag
             className={`flip-card-back shadow-lg overflow-y-auto relative${canOpenModal ? ' cursor-zoom-in' : ''}`}
             onClick={handleBackClick}
           >
-            <img src={backImage || frontImage} alt={backTitle} className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute inset-0" style={{ background: 'rgba(30,58,95,0.72)', backdropFilter: noBlur ? undefined : 'blur(6px)' }} />
-            <div className="relative z-10 flex flex-col items-center justify-center min-h-full p-6 text-white text-center">
-              <h3 className="font-bold text-xl mb-3">{backTitle}</h3>
-              <p className="text-white/85 text-sm leading-relaxed">{backDescription}</p>
-            </div>
+            {isImageBack ? (
+              <img src={backImage} alt={backTitle} className="w-full h-full object-contain bg-white" />
+            ) : (
+              <>
+                <img src={backImage || frontImage} alt={backTitle} className="absolute inset-0 w-full h-full object-cover" />
+                <div className="absolute inset-0" style={{ background: 'rgba(30,58,95,0.72)', backdropFilter: noBlur ? undefined : 'blur(6px)' }} />
+                <div className="relative z-10 flex flex-col items-center justify-center min-h-full p-6 text-white text-center">
+                  <h3 className="font-bold text-xl mb-3">{backTitle}</h3>
+                  <p className="text-white/85 text-sm leading-relaxed">{backDescription}</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
