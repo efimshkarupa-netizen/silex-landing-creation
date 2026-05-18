@@ -531,7 +531,7 @@ const Index = () => {
               }}
               ref={bannerRef}
             >
-              <img src="https://cdn.poehali.dev/projects/53d4eefc-24fa-41e9-b99a-3ee269a34aaf/bucket/241760fa-144b-4952-bb7d-9be11b2e5f95.jpg" alt="Акция — газобетон 13 150 руб. м³" className="w-full h-auto rounded-2xl mx-0 px-0 py-[5px] my-0 object-contain" />
+              <img src="https://cdn.poehali.dev/projects/53d4eefc-24fa-41e9-b99a-3ee269a34aaf/bucket/95d762f7-b931-4b51-bd44-6aadd16b08b4.jpg" alt="Акция — газобетон 13 150 руб. м³, бесплатное хранение до конца июня" className="w-full h-auto rounded-2xl mx-0 px-0 py-[5px] my-0 object-contain" />
             </div>
           </div>
         </div>
